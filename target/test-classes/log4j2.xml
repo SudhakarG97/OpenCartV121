@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    
+    <!-- Define Properties -->
+    <Properties>
+        <Property name="basePath">./logs</Property>
+    </Properties>
+
+    <!-- Define Appenders -->
+    <Appenders>
+        
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        
+        <!-- Rolling File Appender -->
+        <RollingFile name="File" fileName="${basePath}/automation.log" filePattern="${basePath}/automation-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <SizeBasedTriggeringPolicy size="5MB"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <!-- Define Loggers -->
+    <Loggers>
+        
+        <!-- Root Logger -->
+        <Root level="Info">
+            <!-- You can include multiple log levels like TRACE, DEBUG, INFO, WARN, ERROR, FATAL -->
+            <!-- <AppenderRef ref="Console"/> -->
+            <AppenderRef ref="File"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>
